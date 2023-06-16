@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-roboto;
+}
+
+@layer components {
+  .scrollbar::-webkit-scrollbar {
+    @apply h-1 w-1  rounded-md bg-transparent backdrop-invert;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-neutral-200 backdrop-invert transition-all duration-200 dark:bg-neutral-700;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-lg;
+  }
+
+  .scrollbar-hover::-webkit-scrollbar {
+    @apply h-1 w-1  rounded-md bg-transparent backdrop-invert;
+  }
+
+  .scrollbar-hover:hover::-webkit-scrollbar-thumb {
+    @apply bg-neutral-200 opacity-100 dark:bg-neutral-800;
+  }
+
+  .scrollbar-hover::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-transparent opacity-0 transition-all duration-200;
+  }
+}
+
+@layer base {
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full dark:border-neutral-800 border-neutral-300 shadow-sm focus:border-blue-400  focus:ring-0 placeholder:text-neutral-500;
+  }
+  [type="checkbox"],
+  [type="radio"] {
+    @apply border-gray-300 rounded text-indigo-600 focus:ring-indigo-500;
+  }
+}

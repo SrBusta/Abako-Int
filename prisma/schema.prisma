@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model Store {
+    id        Int      @id @default(autoincrement())
+    name      String
+    address   String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    ProductStore ProductStore[]
+}
+
+model ProductStore {
+    id                   Int                    @id @default(autoincrement())
+    price                Float
+    createdAt            DateTime               @default(now())
+    updatedAt            DateTime               @updatedAt
+    product              Product                @relation(fields: [productId], references: [id])
+    productId            Int
+    store                Store                  @relation(fields: [storeId], references: [id])
+    storeId              Int
+    ProductStoreMovement ProductStoreMovement[]
+    stock                Int
+
+    @@index([productId])
+    @@index([storeId])
+}
+
+model ProductStoreMovement {
+    id             Int          @id @default(autoincrement())
+    createdAt      DateTime     @default(now())
+    productStore   ProductStore @relation(fields: [productStoreId], references: [id])
+    productStoreId Int
+    quantity       Int
+    type           MovementType
+    userId         String
+
+    @@index([productStoreId])
+}
+
+model Product {
+    id             Int           @id @default(autoincrement())
+    name           String
+    price          Float
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+    productBrand   ProductBrand? @relation(fields: [productBrandId], references: [id])
+    productBrandId Int?
+    productType    ProductType?  @relation(fields: [productTypeId], references: [id])
+    productTypeId  Int?
+    productModel   ProductModel? @relation(fields: [productModelId], references: [id])
+    productModelId Int?
+
+    productStore ProductStore[]
+
+    @@index([productModelId])
+    @@index([productTypeId])
+    @@index([productBrandId])
+}
+
+model ProductBrand {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    products Product[]
+}
+
+model ProductType {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    Product Product[]
+}
+
+model ProductModel {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    Product Product[]
+}
+
+enum MovementType {
+    IN
+    OUT
+}
