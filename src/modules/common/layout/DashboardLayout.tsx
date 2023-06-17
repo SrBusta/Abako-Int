@@ -59,9 +59,10 @@ export const DashboardLayout = ({ children }: DasboardLayoutProps) => {
 
         <div className="grow">
           <div className="flex border-b bg-white px-4 py-2 shadow-md dark:border-neutral-700 dark:bg-neutral-900">
+            <div className="text-lg"> Gestion de Inventarios - Tienda Musical </div>
             <div className=" ml-auto flex items-center gap-3 px-4 text-neutral-600">
-              <span className="text-sm font-medium capitalize">
-                {user?.username}
+              <span className="text-lg font-medium capitalize">
+                {user?.fullName}
               </span>
               <UserButton afterSignOutUrl="/login" />
             </div>

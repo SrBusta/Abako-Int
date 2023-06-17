@@ -15,6 +15,7 @@ interface CustomModalProps extends BaseModalProps, DialogPanelProps<"div"> {
   titleHeader?: React.ReactNode;
   haveCloseButton?: boolean;
   defaultStyle?: boolean;
+  datanew?:any
 }
 
 export const Modal = ({
@@ -26,6 +27,7 @@ export const Modal = ({
   className,
   haveCloseButton = true,
   defaultStyle = true,
+  datanew,
   ...props
 }: CustomModalProps) => {
   return (

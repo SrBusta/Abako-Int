@@ -37,7 +37,7 @@ const Index = () => {
 
   return (
     <DashboardLayout>
-      <Button onClick={onOpen}>ABRIR</Button>
+      <Button onClick={onOpen}>ABRIRd</Button>
       <div className="grid grid-cols-3 gap-3 p-3">
         {data?.map((store) => (
           <Link
