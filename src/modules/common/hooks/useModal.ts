@@ -6,11 +6,9 @@ interface useModalProps {
 }
 
 export const useModal = (
-  { initialState = false, onClose: close }: useModalProps = {
-    initialState: false,
-  }
+props: useModalProps={initialState:false}
 ) => {
-  const [isOpen, setIsOpen] = useState(initialState);
+  const [isOpen, setIsOpen] = useState(props?.initialState||false);
 
   const toggle = () => {
     setIsOpen((value) => {
